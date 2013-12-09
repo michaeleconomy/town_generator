@@ -1,0 +1,15 @@
+beggar
+buffoon
+crofter
+gardner
+hermit
+housewife
+Landed Gentry
+landlord
+noble
+pilgrim
+spinster
+tenter
+transient
+urchin
+vagabond
