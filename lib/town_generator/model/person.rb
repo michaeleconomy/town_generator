@@ -14,4 +14,10 @@
 
 
 class TownGenerator::Person < TownGenerator::Model
+  MALE = "male"
+  FEMALE = "female"
+  
+  def gender
+    self[:gender]
+  end
 end

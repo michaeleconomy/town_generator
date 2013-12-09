@@ -1,10 +1,4 @@
 class TownGenerator::Generator
-    
-  # randomly choose one of the inputs
-  def self.choose_one(a)
-    a[rand(a.size)]
-  end
-  
   # input - an array of arrays where the inner arrays contain two elements
   # first element - item being chosen
   # second element - integer likelyhood of this element winning
