@@ -1,4 +1,10 @@
 class TownGenerator::Generator
+  
+  def self.load_file(fname)
+    path = File.expand_path("../../../data/#{fname}", __FILE__)
+    File.read(path)
+  end
+  
   # input - an array of arrays where the inner arrays contain two elements
   # first element - item being chosen
   # second element - integer likelyhood of this element winning

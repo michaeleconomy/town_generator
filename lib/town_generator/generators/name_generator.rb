@@ -4,10 +4,10 @@
 # maiden
 # last
 # nick name
-class TownGenerator::NameGenerator
+class TownGenerator::NameGenerator < TownGenerator::Generator
+  
   def self.load_file(fname)
-    path = File.expand_path("../../../../data/names/#{fname}", __FILE__)
-    File.read(path).split
+    super("names/#{fname}").split
   end
   
   LAST_NAMES = load_file("last.txt")
