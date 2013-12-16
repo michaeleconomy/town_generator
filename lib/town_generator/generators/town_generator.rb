@@ -17,5 +17,6 @@ class TownGenerator::TownGenerator < TownGenerator::Generator
       t.families << f
       puts
     end
+    TownGenerator::JobGenerator.new.generate_jobs(t)
   end
 end

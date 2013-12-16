@@ -20,4 +20,8 @@ class TownGenerator::Person < TownGenerator::Model
   def gender
     self[:gender]
   end
+  
+  def age
+    self[:age]
+  end
 end
