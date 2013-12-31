@@ -21,4 +21,13 @@ class TownGenerator::Generator
       end
     end
   end
+  
+  def self.probability_by_age(probabilities, age)
+    probabilities.each do |max_age, chance|
+      if age <= max_age
+        return rand < chance
+      end
+    end
+    false
+  end
 end

@@ -13,24 +13,11 @@
 # Problems
 
 class TownGenerator::Town < TownGenerator::Model
-  def size
-    self[:size]
-  end
+  # def size
+  #   self[:size]
+  # end
   
-  def population
-    residents.size
+  def inspect
+    "{:residents => #{residents.inspect}}"
   end
-
-  def homeless_percentage
-    0.01
-  end
-
-  def percentage_employable
-    0.5
-  end
-
-  def vacant_buildings
-    raise "not implemented"
-  end
-
 end

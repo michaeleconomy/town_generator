@@ -2,12 +2,13 @@ class TownGenerator::TownGenerator < TownGenerator::Generator
   def self.go
     t = TownGenerator::Town.new
     t[:name] = TownGenerator::NameGenerator.last
-    generate_initial_settlers(t, 100)
-    # desired_size = Generate::Town::Size.make
-    # desired_population = random_population(desired_size)
-    # while(t.population < desired_population)
-    #   cycle.go(t)
-    # end
+    generate_initial_settlers(t, 10000)
+    TownGenerator::JobGenerator.new.generate_jobs(t)
+    TownGenerator::StreetGenerator.generate_streets(t)
+    TownGenerator::BuildingGenerator.generate_buildings(t)
+    
+    
+    #TODO: use simulation to grow town?
     t
   end
   
@@ -17,6 +18,5 @@ class TownGenerator::TownGenerator < TownGenerator::Generator
       t.families << f
       puts
     end
-    TownGenerator::JobGenerator.new.generate_jobs(t)
   end
 end

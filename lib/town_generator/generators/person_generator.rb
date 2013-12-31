@@ -1,10 +1,26 @@
 class TownGenerator::PersonGenerator < TownGenerator::Generator
   def self.go(family)
-    p = TownGenerator::Person.new
+    p = generate_blank
+    
+    raise "TODO -- set a date"
+    p[:age] = rand_age
     p[:last_name] = family.name
+    p
+  end
+  
+  def self.make_baby(mother)
+    p = generate_blank
+    
+    raise "TODO -- set a dates"
+    p[:age] = 0
+    p[:last_name] = mother.last.name
+    p
+  end
+  
+  def self.generate_blank
+    p = TownGenerator::Person.new
     p[:gender] = rand_gender
     p[:first_name] = TownGenerator::NameGenerator.first(p[:gender])
-    p[:age] = rand_age
     p
   end
   

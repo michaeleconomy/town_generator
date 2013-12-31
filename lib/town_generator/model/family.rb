@@ -5,9 +5,8 @@
 # Race
 # Hair color
 # Skin tone
-# heritage (what city they're from)
+# heritage (where they're from)
 # residence
-
 class TownGenerator::Family < TownGenerator::Model
   def name
     self[:name]

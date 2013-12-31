@@ -9,10 +9,10 @@ class TownGenerator::JobGenerator < TownGenerator::Generator
     profession_data = TownGenerator::Generator::load_file("professions/professions.csv")
     CSV.parse(profession_data) do |row|
       begin
-        name, rarity, group, dependancies_string, gender, definition, percent, aka_string, work_location, work_location_name = row
-        dependancies =
-          if dependancies_string
-            dependancies_string.split(", ")
+        name, rarity, group, dependencies_string, gender, definition, percent, aka_string, work_location, work_location_name = row
+        dependencies =
+          if dependencies_string
+            dependencies_string.split(", ")
           end
         aka =
           if aka_string
@@ -21,13 +21,13 @@ class TownGenerator::JobGenerator < TownGenerator::Generator
         p = TownGenerator::Profession.new
         p[:name] = name
         p[:group] = group
-        p[:dependancies] = dependancies
+        p[:dependencies] = dependencies
         p[:gender] = gender
         p[:definition] = definition
         p[:percent] = percent
         p[:aka] = aka
         p[:work_location] = work_location
-        p[:aka] = work_location_name
+        p[:work_location_name] = work_location_name
         @professions << p
         @profession_odds << [p, (percent.to_f * 1000).to_i]
       rescue => e
@@ -38,14 +38,17 @@ class TownGenerator::JobGenerator < TownGenerator::Generator
   
   def generate_jobs(town)
     town.residents.each do |r|
-      generate_job(r)
+      generate_job(r, town)
     end
   end
   
   
-  def generate_job(resident)
+  def generate_job(resident, town)
     if is_employed(resident)
-      resident.job = rand_allowed_job
+      resident[:job] = rand_allowed_job(town)
+      puts "#{resident.name} is now employed as a #{resident.job.name}"
+    else  
+      puts "#{resident.name} is now unemployed"
     end
   end
   
@@ -81,8 +84,10 @@ class TownGenerator::JobGenerator < TownGenerator::Generator
   end
   
   def job_dependencies_satisfied(job, town)
+    return true if !job.dependencies
+    
     job.dependencies.each do |dependency|
-      unless town.jobs.find{|j| j.name == dependency}
+      unless town.jobs.detect{|j| j.name == dependency}
         return false
       end
     end

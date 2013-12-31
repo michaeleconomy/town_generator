@@ -1,0 +1,30 @@
+- family generator needs to generate spouses, and children...
+
+- requirements about when someone works for another residence (like, a butler can't work for a farmer, only a noble etc)
+-persistance
+-htmlview
+-families likely to share job and workplace
+-archbishop requirements
+-bishop requirements
+-browse by job group
+-use profiler to make performance improvements
+-fix capitalization
+-family firstname reuse: junior, the 3rd, 4rd, 5th, etc
+
+marriage
+-based on love (not totally random)
+-factor in race?
+-can't marry family
+-divocees/widows more likely to remarry
+-marry someone of simular age...
+
+
+-orphans/orphanages
+-adoption
+
+
+-serialization
+-deserialization
+--ids
+--years
+

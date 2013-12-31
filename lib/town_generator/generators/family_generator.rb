@@ -6,7 +6,7 @@ class TownGenerator::FamilyGenerator < TownGenerator::Generator
     family_size.times do
       p = TownGenerator::PersonGenerator.go(f)
       f.members << p
-      puts "family member #{p.inspect} was generated"
+      puts "person #{p.name} (age: #{p.age}) was generated"
     end
     f
   end
