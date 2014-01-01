@@ -1,13 +1,20 @@
 class Histogram
   def self.go(array, sort_by_count = true)
     aggregated = Hash.new(0)
-    array = array.collect(&:to_s)
-    longest_item = array.first.length
+    longest_item = 0
+    numbers = array.first.is_a?(Numeric)
+    
+    sum = 0
+    
     array.each do |item|
-      if item.length > longest_item
-        longest_item = item.length
+      length = item.to_s.length
+      if length > longest_item
+        longest_item = length
       end
       aggregated[item] += 1
+      if numbers
+        sum += item
+      end
     end
     
     
@@ -28,9 +35,12 @@ class Histogram
       end
     
     hist.each do |item, count|
-      num_spaces = longest_item - item.length + 1
+      num_spaces = 1 + longest_item - item.to_s.length
       bar_width = (count * adjust).to_i
       puts "#{item}#{' ' * num_spaces}#{'.' * bar_width} (#{count})"
+    end
+    if numbers
+      puts "sum: #{sum}, mean: #{sum.to_f/array.count}"
     end
   end
 end

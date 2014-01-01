@@ -1,10 +1,11 @@
 class TownGenerator::FamilyGenerator < TownGenerator::Generator
-  def self.go
+  def self.go(town)
     f = TownGenerator::Family.new
     f[:name] = TownGenerator::NameGenerator.last
-    # f.race
+    # TODO - race might be picked here...
+    # TODO - establish marriages
     family_size.times do
-      p = TownGenerator::PersonGenerator.go(f)
+      p = TownGenerator::PersonGenerator.go(f, town)
       f.members << p
       puts "person #{p.name} (age: #{p.age}) was generated"
     end

@@ -10,13 +10,19 @@ class RandTester
     test("(rand+rand)/2") {(rand+rand)/2}
   end
   
-  def self.test(name)
+  def self.test(name = nil)
     a = []
     10000.times do
-      a << yield.floor_to(1)
+      val = yield
+      if val.is_a?(Float)
+        val = val.floor_to(1)
+      end
+      a << val
     end
     
-    puts "\n#{name}"
+    if name
+      puts "\n#{name}"
+    end
     Histogram.go(a, false)
   end
   

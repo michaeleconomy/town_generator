@@ -65,6 +65,7 @@ class TownGenerator::BirthSimulator
     father.children << p
     p[:mother] = mother
     p[:father] = father
+    p.move_in(mother.residence)
   end
   
   # http://en.wikipedia.org/wiki/Multiple_birth
@@ -74,7 +75,7 @@ class TownGenerator::BirthSimulator
       4
     elsif r < 0.00013
       3
-    elsif r < .011
+    elsif r < 0.011
       2
     else
       1

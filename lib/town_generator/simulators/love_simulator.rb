@@ -53,10 +53,13 @@ class TownGenerator::LoveSimulator
       raise "groom (#{groom.name}) is already married!"
       return false
     end
+    date = TownGenerator::DateGenerator.rand_day_in_year
     bride[:maiden_name] = bride.last_name
     bride[:last_name] = groom.last_name
     bride[:spouse] = groom
     groom[:spouse] = bride
+    bride[:married_at] = date
+    groom[:married_at] = date
     
     find_new_house_and_move(bride, groom, town)
     puts "#{bride.name} and #{groom.name} just got married!"

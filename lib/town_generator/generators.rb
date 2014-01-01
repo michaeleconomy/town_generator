@@ -13,7 +13,7 @@ class TownGenerator::Generator
   # fred is 3 times more likely to win than bob
   def self.choose_with_probabilities(a)
     total_prob = a.collect(&:last).sum
-    r = rand(total_prob)
+    r = rand * total_prob
     a.each do |item, prob|
       r -= prob
       if r < 0
@@ -21,6 +21,24 @@ class TownGenerator::Generator
       end
     end
   end
+  
+  def self.choose_with_probabilities_multi(a, count)
+    total_prob = a.collect(&:last).sum
+    r = rand * total_prob
+    results = []
+    a.delete_if do |item, prob|
+      break if results.size >= count
+      r -= prob
+      if r < 0
+        results << item
+        true
+      else
+        false
+      end
+    end
+    results
+  end
+  
   
   def self.probability_by_age(probabilities, age)
     probabilities.each do |max_age, chance|

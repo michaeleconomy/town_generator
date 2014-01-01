@@ -1,4 +1,8 @@
 class TownGenerator::Street < TownGenerator::Model
+  
+  def town
+    self[:town]
+  end
   def name
     self[:name]
   end

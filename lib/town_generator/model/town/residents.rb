@@ -1,10 +1,11 @@
 class TownGenerator::Town
   def families
+    # TODO remove this, or make it derived
     self[:families] ||= []
   end
   
   def residents
-    families.collect(&:members).flatten
+    self[:residents] ||= []
   end
   
   def single_residents
@@ -13,5 +14,9 @@ class TownGenerator::Town
 
   def population
     residents.size
+  end
+  
+  def deceased
+    self[:deceased] ||= []
   end
 end

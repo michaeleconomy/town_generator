@@ -1,5 +1,7 @@
 class TownGenerator::ResidenceGenerator < TownGenerator::BuildingGenerator
   def self.generate_residences(t)
+    
+    # TODO - strip out the families association, or rebuild it
     t.families.each do |f|
       if homeless?(f)
         puts "the #{f.name} family is homeless"

@@ -23,8 +23,13 @@ class TownGenerator::Person < TownGenerator::Model
     self[:birthday]
   end
   
+  # TODO - this is broken for leapyears...
   def age
     days_old / 365
+  end
+  
+  def town
+    self[:town]
   end
   
   def days_old

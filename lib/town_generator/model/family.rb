@@ -7,6 +7,8 @@
 # Skin tone
 # heritage (where they're from)
 # residence
+
+#TODO - this class really doesn't make any sense...
 class TownGenerator::Family < TownGenerator::Model
   def name
     self[:name]
