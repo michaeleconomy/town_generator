@@ -25,15 +25,15 @@ class TownGenerator::Person < TownGenerator::Model
   
   # TODO - this is broken for leapyears...
   def age
-    days_old / 365
+    (seconds_old / (365 * TownGenerator::SECONDS_IN_DAY)).floor
   end
   
   def town
     self[:town]
   end
   
-  def days_old
-    TownGenerator::Date.current - birth_day
+  def seconds_old
+    town.time - birthday
   end
 
   def inspect

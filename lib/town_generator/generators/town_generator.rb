@@ -1,6 +1,7 @@
 class TownGenerator::TownGenerator < TownGenerator::Generator
   def self.go
     t = TownGenerator::Town.new
+    t[:time] = Time.at(rand * -30000000000)
     t[:name] = TownGenerator::NameGenerator.last
     generate_initial_settlers(t, 1000)
     TownGenerator::JobGenerator.new.generate_jobs(t)

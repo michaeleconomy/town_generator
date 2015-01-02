@@ -3,9 +3,10 @@ class TownGenerator::DateGenerator < TownGenerator::Generator
     range = TownGenerator::Date.current.leap? ? 366 : 365
     @current_date + rand(range)
   end
-
-  def self.rand_day_for_age(age)
+  
+  
+  def self.rand_day_for_age(age, town)
     days_age = rand(365) + 365 * age
-    TownGenerator::Date.current - days_age
+    town.time - days_age * TownGenerator::SECONDS_IN_DAY
   end
 end

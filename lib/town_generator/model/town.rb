@@ -17,6 +17,12 @@ class TownGenerator::Town < TownGenerator::Model
   #   self[:size]
   # end
   
+  
+  
+  def time
+    self[:time]
+  end
+  
   def inspect
     "{:residents => #{residents.inspect}}"
   end

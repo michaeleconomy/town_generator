@@ -36,27 +36,32 @@
 
 class TownGenerator::SuicideSimulator
   def self.simulate(town)
-    
+    town.residents.each do |r|
+      simulate_suicude(r)
+    end
   end
+  SUICIDE_ODDS_MODIFIER_BY_AGE = [
+    [4, 0.0],
+    [14, 0.08],
+    [64, 1.0],
+    [1000, 2.0]
+  ]
   
-  def self.random_suicide(person)
-    
-  end
+  BASE_ODDS = 0.0001
   
-  def self.suicide_odds(person)
-    
-  end
-  
-  def self.suicide_odds_gender(gender)
-    if gender == TownGenerator::Person::MALE
-      2.036477169968689
-    else
-      0.49104405133860407
+  def self.simulate_suicude(person)
+    if rand < suicide_odds(person)
+      person.die(TownGenerator::DateGenerator.rand_day_in_year, "suicide")
     end
   end
   
+  def self.suicide_odds(person)
+    BASE_ODDS *
+      odds_by_age(SUICIDE_ODDS_MODIFIER_BY_AGE, person.age) *
+      suicide_odds_gender(person.gender)
+  end
   
-  def self.suicide_odds_age(age)
+  def self.suicide_odds_gender(gender)
     if gender == TownGenerator::Person::MALE
       2.036477169968689
     else

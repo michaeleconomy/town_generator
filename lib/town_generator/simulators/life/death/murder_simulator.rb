@@ -15,7 +15,8 @@ class TownGenerator::MurderSimulator
   def self.num_murders_to_simulute(town_size)
     #TODO - for small towns, this is effectively locked into 0
     base_count = town_size * MURDER_RATE
-    floating_pount_num_murders = ((((rand+rand+rand)/3) + rand**3) * base_count * 1.5)
+    floating_pount_num_murders =
+      ((((rand+rand+rand)/3) + rand**3) * base_count * 1.5)
     remainder = floating_pount_num_murders.modulo(1)
     if rand < remainder
       floating_pount_num_murders += 1
@@ -129,7 +130,7 @@ class TownGenerator::MurderSimulator
     0
   end
   
-  VICTIM_ODDS_BY_AGE = [			
+  VICTIM_ODDS_BY_AGE = [
     [1,  0.011383399],
     [4,  0.00687747 ],
     [8,  0.001897233],

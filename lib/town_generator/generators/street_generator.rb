@@ -27,7 +27,7 @@ class TownGenerator::StreetGenerator < TownGenerator::Generator
   end
   
   def self.get_uniquely_named_street(t)
-    loop
+    loop do
       new_st = go(t)
       unless street_name_taken(new_st.name, t)
         return new_st
@@ -36,7 +36,7 @@ class TownGenerator::StreetGenerator < TownGenerator::Generator
   end
   
   def self.street_name_taken(name, town)
-    t.streets.detect{|s| s.name == name}
+    town.streets.detect{|s| s.name == name}
   end
   
   def self.go(town)
